@@ -3,9 +3,9 @@ String artefactBucket = "beteasy-apigw-artefacts"
 
 pipeline {
   agent any
-  options {
+  //options {
     //ansiColor('xterm')
-  }
+  //}
 
   parameters {
       booleanParam(name: 'createInfra', defaultValue: false, description: 'Create infrastructure?')
