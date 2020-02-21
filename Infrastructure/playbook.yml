@@ -7,6 +7,6 @@
       state: "present"
       region: "ap-southeast-2"
       disable_rollback: true
-      template: "infra.yaml"
+      template: "Infrastructure/infra.yaml"
 
 
