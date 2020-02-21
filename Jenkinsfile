@@ -4,7 +4,7 @@ String artefactBucket = "beteasy-apigw-artefacts"
 pipeline {
   agent any
   options {
-    ansiColor('xterm')
+    //ansiColor('xterm')
   }
 
   parameters {
