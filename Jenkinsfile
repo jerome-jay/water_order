@@ -20,7 +20,7 @@ pipeline {
       }
       steps {
         sh  """ansible-playbook \\
-              -vvvv Infrastructure/infra.yml
+              -vvvv Infrastructure/playbook.yml
         """
       }
     }

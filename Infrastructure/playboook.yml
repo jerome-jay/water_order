@@ -1,0 +1,12 @@
+---
+- hosts: "localhost"
+  tasks:
+  - name: "Build Infra"
+    cloudformation:
+      stack_name: "water_order"
+      state: "present"
+      region: "ap-southeast-2"
+      disable_rollback: true
+      template: "infra.yaml"
+
+
