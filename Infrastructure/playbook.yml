@@ -3,7 +3,7 @@
   tasks:
   - name: "Build Infra"
     cloudformation:
-      stack_name: "water_order"
+      stack_name: "waterorder"
       state: "present"
       region: "ap-southeast-2"
       disable_rollback: true
