@@ -1,15 +1,17 @@
-Notes:
-- Jenkins server:
+Pre-Requisites:
+- Jenkins server from Amazon AMI 2:
 -- python-pip
 -- pip install ansible boto3 botocore
 -- docker
--- corretto 11
 -- jq
--- aws cli (already installed in amazon ami)
 
 - Jenkins plugins: 
 -- pipeline
 -- github
+
+- Jenkins tools:
+-- tool named CORRETTO_11, with JAVA_HOME /usr/lib/jvm/java-11-amazon-corretto.x86_64/
+-- maven tool named Maven 3.6.3, with maven 3.6.3 version
 
 Decisions:
 - use ECS, to containerize the application

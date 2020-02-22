@@ -40,7 +40,7 @@ pipeline {
         sh  """ansible-playbook \\
               -vvvv Infrastructure/playbook_ecr.yml
               COUNTIMAGES=`aws ecr list-images --repository-name ${application} --region ${AWS_REGION} | jq '.imageIds | length'`
-              if [[ $COUNTIMAGES -eq 0 ]];
+              if [[ \$COUNTIMAGES -eq 0 ]];
               then
                 echo "no images"
                 exit 2
