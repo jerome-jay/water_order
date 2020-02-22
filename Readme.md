@@ -4,6 +4,7 @@ Notes:
 -- pip install ansible boto3 botocore
 -- docker.io
 -- corretto 11
+-- jq
 - Jenkins plugins: 
 -- pipeline
 -- github

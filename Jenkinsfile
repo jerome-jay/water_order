@@ -62,7 +62,7 @@ pipeline {
 
     stage("Deploy") {
       steps {
-        sh("${WORKSPACE}/ecs-deploy/ecs-deploy -c uat -n ${application} -i \"${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:${BUILD_NUMBER}\"")
+        sh("${WORKSPACE}/ecs-deploy/ecs-deploy -c uat -n ${application} -i \"${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:${BUILD_NUMBER}\" --region ap-southeast-2")
         sh("aws ecs wait services-stable --cluster uat --services ${application}")
       }
     }
