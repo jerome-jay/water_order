@@ -206,7 +206,6 @@ Resources:
                 "Statement": [{
                     "Effect": "Allow",
                     "Action": [
-                        "ecs:CreateCluster",
                         "ecs:DeregisterContainerInstance",
                         "ecs:DiscoverPollEndpoint",
                         "ecs:Poll",
@@ -350,3 +349,7 @@ Outputs:
     Value: !Ref ECSCluster
     Export:
       Name: ECSCluster
+  LoadBalancerListener:
+    Value: !Ref LoadBalancerListener
+    Export:
+      Name: ECSLoadBalancerListener

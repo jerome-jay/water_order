@@ -10,17 +10,6 @@ Parameters:
     Default: vpc-841114e3
 
 Resources:
-  ALBListener:
-    Type: AWS::ElasticLoadBalancingV2::Listener
-    DependsOn: ECSServiceRole
-    Properties:
-      DefaultActions:
-      - Type: forward
-        TargetGroupArn: !Ref 'ECSTG'
-      LoadBalancerArn: !ImportValue 'ECSLoadBalancerArn'
-      Port: '80'
-      Protocol: HTTP
-
   ECSALBListenerRule:
     Type: AWS::ElasticLoadBalancingV2::ListenerRule
     DependsOn: ALBListener
@@ -31,7 +20,7 @@ Resources:
       Conditions:
       - Field: path-pattern
         Values: [/]
-      ListenerArn: !Ref 'ALBListener'
+      ListenerArn: !ImportValue 'ECSLoadBalancerListener'
       Priority: 1
 
   ECSTG:
