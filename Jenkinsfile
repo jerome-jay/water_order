@@ -1,6 +1,6 @@
 def AWS_ACCOUNTID = "458288760036"
 def AWS_REGION = "ap-southeast-2"
-def application = "waterorder"
+def application = "water-order"
 
 pipeline {
   agent any

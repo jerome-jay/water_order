@@ -339,23 +339,6 @@ Resources:
           }
         }
 
-  ECR:
-    Type: AWS::ECR::Repository
-    Properties: 
-      RepositoryName: "waterorder"
-      RepositoryPolicyText: 
-        Version: "2012-10-17"
-        Statement: 
-          - 
-            Sid: AllowPull
-            Effect: Allow
-            Principal: 
-              AWS: 
-                - !Sub "arn:aws:iam::${AWS::AccountId}:root"
-            Action: 
-              - "ecr:BatchGetImage"
-              - "ecr:BatchCheckLayerAvailability"
-
 Outputs:
   LoadBalancerArn:
     Description: LoadBalancerArn
