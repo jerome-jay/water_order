@@ -42,8 +42,10 @@ pipeline {
               COUNTIMAGES=`aws ecr list-images --repository-name ${application} --region ${AWS_REGION} | jq '.imageIds | length'`
               if [[ \$COUNTIMAGES -eq 0 ]];
               then
-                echo "no images"
-                exit 2
+                echo "Pushing an image into newly created ECR repo to bootstrap pipeline"
+                docker pull nginx:latest
+                docker tag nginx:latest ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:latest
+                docker push ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:latest
               fi
         """
       }
