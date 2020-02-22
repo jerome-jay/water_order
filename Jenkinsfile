@@ -14,6 +14,7 @@ pipeline {
 
   parameters {
       booleanParam(name: 'createInfra', defaultValue: true, description: 'Create infrastructure?')
+      booleanParam(name: 'Forcebootstrap', defaultValue: false, description: 'Check when running this pipeline for the first time')
   }
 
   stages {
@@ -42,20 +43,17 @@ pipeline {
               COUNTIMAGES=`aws ecr list-images --repository-name ${application} --region ${AWS_REGION} | jq '.imageIds | length'`
               if [[ \$COUNTIMAGES -eq 0 ]];
               then
-                echo "Pushing an image into newly created ECR repo to bootstrap pipeline"
-                docker pull nginx:latest
-                docker tag nginx:latest ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:latest
-                docker push ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:latest
+                echo "No image found - run this pipeline with 'Forcebootstrap' option enabled'"
+                exit 2
               fi
         """
       }
-      
     }
 
     stage("Create ECS Service") {
       when {
         expression {
-          params.createInfra == true
+          params.createInfra == true && params.Forcebootstrap == false
         }
       }
       steps {
@@ -71,7 +69,7 @@ pipeline {
       }
     }
 
-    stage("Build Docker") {
+    stage("Build Container and push to ECR") {
       steps {
         sh "docker build -t ${application}:${BUILD_NUMBER} ."
         sh "docker tag ${application}:${BUILD_NUMBER} ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:${BUILD_NUMBER}"
@@ -96,6 +94,11 @@ pipeline {
     }
 
     stage("Deploy") {
+      when {
+        expression {
+          params.Forcebootstrap == false
+        }
+      }
       steps {
         sh("${WORKSPACE}/ecs-deploy/ecs-deploy -c uat -n ${application} -i \"${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:${BUILD_NUMBER}\" --region ap-southeast-2")
         sh("aws ecs wait services-stable --cluster uat --services ${application}")

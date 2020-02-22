@@ -31,7 +31,7 @@ Resources:
       HealthCheckTimeoutSeconds: 5
       HealthyThresholdCount: 2
       Name: water-order
-      Port: 80
+      Port: 8081
       Protocol: HTTP
       UnhealthyThresholdCount: 2
       VpcId: !Ref 'VPC'
@@ -58,7 +58,7 @@ Resources:
             awslogs-region: !Ref 'AWS::Region'
             awslogs-stream-prefix: water-order
         PortMappings:
-        - ContainerPort: 80
+        - ContainerPort: 8081
 
   Service:
     Type: AWS::ECS::Service
@@ -67,7 +67,7 @@ Resources:
       DesiredCount: '1'
       LoadBalancers:
       - ContainerName: water-order
-        ContainerPort: '80'
+        ContainerPort: '8081'
         TargetGroupArn: !Ref 'ECSTG'
       Role: !Ref 'ECSServiceRole'
       TaskDefinition: !Ref 'TaskDefinition'
