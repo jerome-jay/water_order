@@ -39,7 +39,7 @@ pipeline {
       steps {
         sh "docker build --pull -t waterorder:${BUILD_NUMBER} -f Dockerfile"
         sh "docker tag waterorder:${BUILD_NUMBER} ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/waterorder:${BUILD_NUMBER}"
-        sh "$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
+        sh "\$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
         sh "docker push ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/waterorder:${BUILD_NUMBER}"
       }
     }
