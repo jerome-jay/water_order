@@ -69,9 +69,6 @@ Resources:
             awslogs-group: !Ref 'CloudwatchLogsGroup'
             awslogs-region: !Ref 'AWS::Region'
             awslogs-stream-prefix: water-order
-        MountPoints:
-        - ContainerPath: /usr/local/apache2/htdocs
-          SourceVolume: my-vol
         PortMappings:
         - ContainerPort: 80
 
