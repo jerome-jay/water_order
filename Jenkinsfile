@@ -1,5 +1,5 @@
-
-String artefactBucket = "beteasy-apigw-artefacts"
+def AWS_ACCOUNTID = "458288760036"
+def AWS_REGION = "ap-southeast-2"
 
 pipeline {
   agent any
@@ -32,6 +32,15 @@ pipeline {
     stage("Maven Build") {
       steps {
         sh "mvn -DskipTests=true clean package"
+      }
+    }
+
+    stage("Build Docker") {
+      steps {
+        sh "docker build --pull -t waterorder:${BUILD_NUMBER} -f Dockerfile"
+        sh "docker tag waterorder:${BUILD_NUMBER} ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/waterorder:${BUILD_NUMBER}"
+        sh "$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
+        sh "docker push ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/waterorder:${BUILD_NUMBER}"
       }
     }
 
