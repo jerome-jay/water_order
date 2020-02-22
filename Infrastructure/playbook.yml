@@ -1,17 +1,17 @@
 ---
 - hosts: "localhost"
   tasks:
-  - name: "Build Infra"
+  - name: "Build ECS Infra"
     cloudformation:
-      stack_name: "waterorder"
+      stack_name: "ECS"
       state: "present"
       region: "ap-southeast-2"
       disable_rollback: true
       template: "Infrastructure_cfn.yml"
-      
+
   - name: "Build ECS Service"
     cloudformation:
-      stack_name: "waterorder_service"
+      stack_name: "waterorder-service"
       state: "present"
       region: "ap-southeast-2"
       disable_rollback: true
