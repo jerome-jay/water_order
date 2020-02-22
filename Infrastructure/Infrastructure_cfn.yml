@@ -346,3 +346,7 @@ Outputs:
     Value: !Ref LoadBalancer
     Export:
       Name: ECSLoadBalancerArn
+  ECSCluster:
+    Value: !Ref ECSCluster
+    Export:
+      Name: ECSCluster

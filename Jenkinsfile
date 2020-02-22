@@ -3,6 +3,10 @@ String artefactBucket = "beteasy-apigw-artefacts"
 
 pipeline {
   agent any
+  tools { 
+        maven 'Maven 3.6.3' 
+        jdk 'CORRETTO_11' 
+  }
   //options {
     //ansiColor('xterm')
   //}

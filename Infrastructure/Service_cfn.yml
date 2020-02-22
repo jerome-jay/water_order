@@ -79,7 +79,7 @@ Resources:
     Type: AWS::ECS::Service
     DependsOn: ALBListener
     Properties:
-      Cluster: !Ref 'ECSCluster'
+      Cluster: !ImportValue 'ECSCluster'
       DesiredCount: '1'
       LoadBalancers:
       - ContainerName: water_order
