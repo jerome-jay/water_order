@@ -31,8 +31,7 @@ pipeline {
 
     stage("Maven Build") {
       steps {
-        sh "rm -rf *"
-        checkout scm
+        sh "mvn -DskipTests=true clean package"
       }
     }
 

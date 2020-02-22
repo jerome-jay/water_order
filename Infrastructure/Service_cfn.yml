@@ -42,7 +42,7 @@ Resources:
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 5
       HealthyThresholdCount: 2
-      Name: water_order
+      Name: water-order
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 2
@@ -58,7 +58,7 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       ContainerDefinitions:
-      - Name: water_order ####### TO DO COMPLETEMENT
+      - Name: water-order ####### TO DO COMPLETEMENT
         Cpu: '10'
         Essential: 'true'
         Image: httpd:2.4
@@ -68,7 +68,7 @@ Resources:
           Options:
             awslogs-group: !Ref 'CloudwatchLogsGroup'
             awslogs-region: !Ref 'AWS::Region'
-            awslogs-stream-prefix: water_order
+            awslogs-stream-prefix: water-order
         MountPoints:
         - ContainerPath: /usr/local/apache2/htdocs
           SourceVolume: my-vol
@@ -82,7 +82,7 @@ Resources:
       Cluster: !ImportValue 'ECSCluster'
       DesiredCount: '1'
       LoadBalancers:
-      - ContainerName: water_order
+      - ContainerName: water-order
         ContainerPort: '80'
         TargetGroupArn: !Ref 'ECSTG'
       Role: !Ref 'ECSServiceRole'
