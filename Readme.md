@@ -5,6 +5,8 @@ Notes:
 -- docker.io
 -- corretto 11
 -- jq
+-- aws cli (already installed in amazon ami)
+
 - Jenkins plugins: 
 -- pipeline
 -- github

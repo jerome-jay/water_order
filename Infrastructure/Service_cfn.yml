@@ -63,10 +63,10 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       ContainerDefinitions:
-      - Name: water-order ####### TO DO COMPLETEMENT
+      - Name: water-order
         Cpu: '10'
         Essential: 'true'
-        Image: httpd:2.4
+        Image: ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/water-oder:latest
         Memory: '300'
         LogConfiguration:
           LogDriver: awslogs

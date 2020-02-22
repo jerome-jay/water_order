@@ -67,6 +67,11 @@ pipeline {
       }
     }
 
+    stage('Tag image as latest') {
+        sh("docker tag  ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:${BUILD_NUMBER} ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${dockerRepoImage}:latest")
+        sh("docker push ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:latest")
+    }
+
   } // stageS
   post {
     always {
