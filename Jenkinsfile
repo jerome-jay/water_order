@@ -46,6 +46,7 @@ pipeline {
     }
 
     stage('Get deploy code') {
+      steps {
         checkout([$class: 'GitSCM',
             branches: [[name: '*/master']],
             doGenerateSubmoduleConfigurations: false,
@@ -56,7 +57,9 @@ pipeline {
             submoduleCfg: [],
             userRemoteConfigs: [[url: "https://github.com/silinternational/ecs-deploy.git"]]
         ])
+      }
     }
+
     stage("Deploy") {
       steps {
         sh("${WORKSPACE}/ecs-deploy/ecs-deploy -c uat -n ${application} -i \"${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:${BUILD_NUMBER}\"")
