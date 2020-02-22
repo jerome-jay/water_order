@@ -340,3 +340,9 @@ Resources:
           }
         }
 
+Outputs:
+  LoadBalancerArn:
+    Description: LoadBalancerArn
+    Value: !Ref LoadBalancer
+    Export:
+      Name: ECSLoadBalancerArn

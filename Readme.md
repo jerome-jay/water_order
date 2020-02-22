@@ -1,7 +1,8 @@
 Notes:
-- Jenkins server needs ansible installed
+- Jenkins server needs:
+-- python-pip
+-- pip install ansible boto3 botocore
 - jenkins plugins: pipeline, github
-
 
 Decisions:
 - use ECS, to containerize the application
