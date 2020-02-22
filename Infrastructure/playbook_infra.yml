@@ -9,12 +9,3 @@
       disable_rollback: true
       template: "Infrastructure_cfn.yml"
 
-  - name: "Build ECS Service"
-    cloudformation:
-      stack_name: "waterorder-service"
-      state: "present"
-      region: "ap-southeast-2"
-      disable_rollback: true
-      template: "Service_cfn.yml"
-
-

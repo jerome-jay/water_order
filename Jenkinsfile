@@ -17,7 +17,7 @@ pipeline {
   }
 
   stages {
-    stage("Create Infrastructure") {
+    stage("Create Infrastructure") { // this stack creates the ECS cluster - this should be in its own jenkins job
       when {
         expression {
           params.createInfra == true
@@ -25,7 +25,40 @@ pipeline {
       }
       steps {
         sh  """ansible-playbook \\
-              -vvvv Infrastructure/playbook.yml
+              -vvvv Infrastructure/playbook_infra.yml
+        """
+      }
+    }
+
+    stage("Create ECR") {
+      when {
+        expression {
+          params.createInfra == true
+        }
+      }
+      steps {
+        sh  """ansible-playbook \\
+              -vvvv Infrastructure/playbook_ecr.yml
+              COUNTIMAGES=`aws ecr list-images --repository-name ${application} --region ${AWS_REGION} | jq '.imageIds | length'`
+              if [[ $COUNTIMAGES -eq 0 ]];
+              then
+                echo "no images"
+                exit 2
+              fi
+        """
+      }
+      
+    }
+
+    stage("Create ECS Service") {
+      when {
+        expression {
+          params.createInfra == true
+        }
+      }
+      steps {
+        sh  """ansible-playbook \\
+              -vvvv Infrastructure/playbook_ecs_service.yml
         """
       }
     }

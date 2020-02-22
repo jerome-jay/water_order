@@ -1,0 +1,12 @@
+---
+- hosts: "localhost"
+  tasks:
+  - name: "Build ECR"
+    cloudformation:
+      stack_name: "ECR-water-order"
+      state: "present"
+      region: "ap-southeast-2"
+      disable_rollback: true
+      template: "Ecr.yml"
+
+
