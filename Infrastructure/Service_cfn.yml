@@ -46,7 +46,7 @@ Resources:
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 2
-      VpcId: !Ref 'VpcId'
+      VpcId: !Ref 'VPC'
 
   CloudwatchLogsGroup:
     Type: AWS::Logs::LogGroup
