@@ -12,7 +12,6 @@ Parameters:
 Resources:
   ECSALBListenerRule:
     Type: AWS::ElasticLoadBalancingV2::ListenerRule
-    DependsOn: ALBListener
     Properties:
       Actions:
       - Type: forward
@@ -63,7 +62,6 @@ Resources:
 
   Service:
     Type: AWS::ECS::Service
-    DependsOn: ALBListener
     Properties:
       Cluster: !ImportValue 'ECSCluster'
       DesiredCount: '1'
