@@ -6,18 +6,20 @@ public class Order {
 
     }
 
-    public Order(Integer id, String firstName, String lastName, String email) {
+    public Order(Integer id, String farmId, String startTime, String duration, String status) {
         super();
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+        this.farmId = farmId;
+        this.startTime = startTime;
+        this.duration = duration;
+        this.status = status;
     }
  
     private Integer id;
-    private String firstName;   
-    private String lastName;
-    private String email;
+    private String farmId;   
+    private String startTime;
+    private String duration;
+    private String status;
 
     public Integer getId() {
         return id;
@@ -27,32 +29,40 @@ public class Order {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getfarmId() {
+        return farmId;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setfarmId(String farmId) {
+        this.farmId = farmId;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getstartTime() {
+        return startTime;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setstartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public String getEmail() {
-        return email;
+    public String getduration() {
+        return duration;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setduration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getstatus() {
+        return status;
+    }
+
+    public void setstatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Order [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+        return "Order [id=" + id + ", farmId=" + farmId + ", startTime=" + startTime + ", duration=" + duration + ", status=" + status+ ""]";
     }
 }
