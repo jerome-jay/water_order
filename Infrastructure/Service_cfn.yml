@@ -58,7 +58,7 @@ Resources:
             awslogs-region: !Ref 'AWS::Region'
             awslogs-stream-prefix: water-order
         PortMappings:
-        - ContainerPort: 8081
+        - ContainerPort: 8080
 
   Service:
     Type: AWS::ECS::Service

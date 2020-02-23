@@ -46,7 +46,7 @@ pipeline {
                 echo "mvn -DskipTests=true clean package"
                 echo "docker build -t ${application}:latest ."
                 echo "docker tag ${application}:latest ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:latest"
-                echo "\$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
+                echo '\$(aws ecr get-login --no-include-email --region ${AWS_REGION})'
                 echo "docker push ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:latest"
                 exit 2
               fi
@@ -106,7 +106,7 @@ pipeline {
 
     stage('Tag image as latest') {
       steps {
-        sh("docker tag  ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:${BUILD_NUMBER} ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${dockerRepoImage}:latest")
+        sh("docker tag ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:${BUILD_NUMBER} ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${dockerRepoImage}:latest")
         sh("docker push ${AWS_ACCOUNTID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${application}:latest")
       }
     }
