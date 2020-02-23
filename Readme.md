@@ -13,12 +13,16 @@ Pre-Requisites:
 -- tool named CORRETTO_11, with JAVA_HOME /usr/lib/jvm/java-11-amazon-corretto.x86_64/
 -- maven tool named Maven 3.6.3, with maven 3.6.3 version
 
+- AWS:
+-- a valid certificate for the domain
+-- a VPC, private and public subnets
+
 Decisions:
 - use ECS, to containerize the application
 - cloudformation: just base infrastructure; deployment is done via https://github.com/silinternational/ecs-deploy
 
 Issues:
-- DNS + HTTPS: need a real domain to get a real certificate ...
+- DNS + HTTPS certificate: I need a real domain to get a real certificate; since I lack this, I'm using a self signed certificate
 
 Things not done or badly done, to save time:
 - quite a bit of hardcoding:
