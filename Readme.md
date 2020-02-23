@@ -19,3 +19,9 @@ Decisions:
 
 Issues:
 - DNS + HTTPS: need a real domain to get a real certificate ...
+
+Things not done or badly done, to save time:
+- quite a bit of hardcoding:
+-- Clouformation templates could use more parameters, and ansible to provide them)
+-- CFN parameters hardcoded - ansible is meant to retrieve them via lookup or parameters
+- Barebone infrastructure: not much thought given to logs, alerts ...etc

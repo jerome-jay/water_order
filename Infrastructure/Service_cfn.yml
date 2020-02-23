@@ -26,12 +26,12 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
       HealthCheckIntervalSeconds: 10
-      HealthCheckPath: /
+      HealthCheckPath: /orders
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 5
       HealthyThresholdCount: 2
       Name: water-order
-      Port: 8081
+      Port: 8080
       Protocol: HTTP
       UnhealthyThresholdCount: 2
       VpcId: !Ref 'VPC'
@@ -67,7 +67,7 @@ Resources:
       DesiredCount: '1'
       LoadBalancers:
       - ContainerName: water-order
-        ContainerPort: '8081'
+        ContainerPort: '8080'
         TargetGroupArn: !Ref 'ECSTG'
       Role: !Ref 'ECSServiceRole'
       TaskDefinition: !Ref 'TaskDefinition'
