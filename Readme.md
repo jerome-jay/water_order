@@ -25,3 +25,4 @@ Things not done or badly done, to save time:
 -- Clouformation templates could use more parameters, and ansible to provide them)
 -- CFN parameters hardcoded - ansible is meant to retrieve them via lookup or parameters
 - Barebone infrastructure: not much thought given to logs, alerts ...etc
+- The "bootstrap" of the pipeline is not automated - it is left as is on purpose, as automating it can be dangerous (ie: force pushing an image as latest)
