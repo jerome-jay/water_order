@@ -6,7 +6,7 @@ public class Order {
 
     }
 
-    public Order(Integer id, String farmId, String startTime, String duration, String status) {
+    public Order(Integer id, String farmId, String startTime, String duration, OrderStatus status) {
         super();
         this.id = id;
         this.farmId = farmId;
@@ -19,7 +19,7 @@ public class Order {
     private String farmId;   
     private String startTime;
     private String duration;
-    private String status;
+    private OrderStatus status;
 
     public Integer getId() {
         return id;
@@ -53,11 +53,11 @@ public class Order {
         this.duration = duration;
     }
 
-    public String getstatus() {
+    public OrderStatus getstatus() {
         return status;
     }
 
-    public void setstatus(String status) {
+    public void setstatus(OrderStatus status) {
         this.status = status;
     }
 
