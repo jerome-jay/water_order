@@ -143,13 +143,13 @@ Resources:
         ImageId: !Ref ECSAMI
         InstanceType: !Ref InstanceType
         InstanceInitiatedShutdownBehavior: terminate
-          Monitoring:
-            Enabled: true
-          NetworkInterfaces:
-            - AssociatePublicIpAddress: false
-              DeleteOnTermination: true
-              DeviceIndex: 0
-              Groups: !Split [ ",", !Ref "ECSHostSecurityGroup" ]
+        Monitoring:
+          Enabled: true
+        NetworkInterfaces:
+          - AssociatePublicIpAddress: false
+            DeleteOnTermination: true
+            DeviceIndex: 0
+            Groups: !Split [ ",", !Ref "ECSHostSecurityGroup" ]
         IamInstanceProfile:
             Name: !Ref "ECSInstanceProfile"
         UserData:
