@@ -34,6 +34,11 @@ Parameters:
     Type: Number
     Default: 1
 
+  MaxClusterSize:
+    Description: Max number of instances in the ASG
+    Type: Number
+    Default: 2
+
 Resources:
   # SECURITY GROUPS
   ECSHostSecurityGroup:
@@ -107,7 +112,7 @@ Resources:
       VPCZoneIdentifier: !Ref PrivateSubnets
       LaunchConfigurationName: !Ref ECSLaunchConfiguration
       MinSize: !Ref ClusterSize
-      MaxSize: !Ref ClusterSize
+      MaxSize: !Ref MaxClusterSize
       DesiredCapacity: !Ref ClusterSize
       Tags:
         - Key: Name
