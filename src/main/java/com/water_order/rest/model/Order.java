@@ -55,7 +55,7 @@ public class Order {
         this.startTime = startTime;
     }
 
-    public String getduration() {
+    public Integer getduration() {
         return duration;
     }
 
