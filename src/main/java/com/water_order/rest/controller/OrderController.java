@@ -31,8 +31,6 @@ public class OrderController
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> addOrder(
-                        @RequestHeader(name = "X-COM-PERSIST", required = true) String headerPersist,
-                        @RequestHeader(name = "X-COM-LOCATION", required = false, defaultValue = "ASIA") String headerLocation,
                         @RequestBody Order order) 
                  throws Exception 
     {       
