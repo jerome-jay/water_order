@@ -1,7 +1,7 @@
 package com.water_order.rest.model;
 
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Digits;
 
 public class Order {
 
@@ -9,7 +9,7 @@ public class Order {
 
     }
 
-    public Order(Integer id, String farmId, String startTime, String duration, OrderStatus status) {
+    public Order(Integer id, String farmId, String startTime, int duration, OrderStatus status) {
         super();
         this.id = id;
         this.farmId = farmId;
@@ -23,8 +23,12 @@ public class Order {
     @NotEmpty(message = "farmId must not be empty")
     private String farmId;   
 
+    @NotEmpty(message = "startTime must not be empty")
     private String startTime;
-    private String duration;
+
+    @Integer(message = "Duration in hours needs to be an integer")
+    private int duration;
+
     private OrderStatus status;
 
     public Integer getId() {
@@ -55,7 +59,7 @@ public class Order {
         return duration;
     }
 
-    public void setduration(String duration) {
+    public void setduration(int duration) {
         this.duration = duration;
     }
 
