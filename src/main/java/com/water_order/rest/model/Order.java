@@ -1,5 +1,8 @@
 package com.water_order.rest.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class Order {
 
     public Order() {
@@ -16,7 +19,10 @@ public class Order {
     }
  
     private Integer id;
+
+    @NotEmpty(message = "farmId must not be empty")
     private String farmId;   
+
     private String startTime;
     private String duration;
     private OrderStatus status;
