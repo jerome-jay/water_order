@@ -35,6 +35,9 @@ Resources:
       Protocol: HTTP
       UnhealthyThresholdCount: 2
       VpcId: !Ref 'VPC'
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: 30
 
   CloudwatchLogsGroup:
     Type: AWS::Logs::LogGroup
