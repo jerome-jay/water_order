@@ -137,7 +137,7 @@ Resources:
         WaitOnResourceSignals: true
 
   LaunchTemplate:
-    Type: AWS::AutoScaling::LaunchTemplate
+    Type: AWS::EC2::LaunchTemplate
     Properties:
       LaunchTemplateData:
         ImageId: !Ref ECSAMI
