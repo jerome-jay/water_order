@@ -110,7 +110,9 @@ Resources:
     Type: AWS::AutoScaling::AutoScalingGroup
     Properties:
       VPCZoneIdentifier: !Ref PrivateSubnets
-      LaunchConfigurationName: !Ref ECSLaunchConfiguration
+      LaunchTemplate:
+        LaunchTemplateId: !Ref "LaunchTemplate"
+        Version: !GetAtt "LaunchTemplate.LatestVersionNumber"
       MinSize: !Ref ClusterSize
       MaxSize: !Ref MaxClusterSize
       DesiredCapacity: !Ref ClusterSize
@@ -137,20 +139,28 @@ Resources:
   ECSLaunchConfiguration:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
-      ImageId: !Ref ECSAMI
-      InstanceType: !Ref InstanceType
-      SecurityGroups:
-        - !Ref ECSHostSecurityGroup
-      IamInstanceProfile: !Ref ECSInstanceProfile
-      UserData:
-        "Fn::Base64": !Sub |
-          #!/bin/bash
-          yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
-          yum install -y https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
-          yum install -y aws-cfn-bootstrap hibagent 
-          /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource ECSLaunchConfiguration
-          /opt/aws/bin/cfn-signal -e $? --region ${AWS::Region} --stack ${AWS::StackName} --resource ECSAutoScalingGroup
-          /usr/bin/enable-ec2-spot-hibernation
+      LaunchTemplateData:
+        ImageId: !Ref ECSAMI
+        InstanceType: !Ref InstanceType
+        InstanceInitiatedShutdownBehavior: terminate
+          Monitoring:
+            Enabled: true
+          NetworkInterfaces:
+            - AssociatePublicIpAddress: false
+              DeleteOnTermination: true
+              DeviceIndex: 0
+              Groups: !Split [ ",", !Ref "ECSHostSecurityGroup" ]
+        IamInstanceProfile:
+            Name: !Ref "ECSInstanceProfile"
+        UserData:
+          "Fn::Base64": !Sub |
+            #!/bin/bash
+            yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+            yum install -y https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
+            yum install -y aws-cfn-bootstrap hibagent 
+            /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource ECSLaunchConfiguration
+            /opt/aws/bin/cfn-signal -e $? --region ${AWS::Region} --stack ${AWS::StackName} --resource ECSAutoScalingGroup
+            /usr/bin/enable-ec2-spot-hibernation
 
     Metadata:
       AWS::CloudFormation::Init:
