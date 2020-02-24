@@ -26,7 +26,7 @@ public class Order {
     @NotEmpty(message = "startTime must not be empty")
     private String startTime;
 
-    @Digits(int, message = "Duration in hours needs to be an integer")
+    @Digits(integer=6,fraction=0)
     private Integer duration;
 
     private OrderStatus status;
