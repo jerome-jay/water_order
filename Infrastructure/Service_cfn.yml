@@ -18,7 +18,7 @@ Resources:
         TargetGroupArn: !Ref 'ECSTG'
       Conditions:
       - Field: path-pattern
-        Values: [/orders]
+        Values: [/orders/*]
       ListenerArn: !ImportValue 'ECSLoadBalancerListener'
       Priority: 1
 
