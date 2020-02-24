@@ -146,7 +146,7 @@ Resources:
         Monitoring:
           Enabled: true
         NetworkInterfaces:
-          - AssociatePublicIpAddress: false
+          - AssociatePublicIpAddress: true
             DeleteOnTermination: true
             DeviceIndex: 0
             Groups: !Split [ ",", !Ref "ECSHostSecurityGroup" ]
