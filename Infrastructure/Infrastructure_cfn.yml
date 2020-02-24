@@ -136,7 +136,7 @@ Resources:
           - ScheduledActions
         WaitOnResourceSignals: true
 
-  ECSLaunchConfiguration:
+  LaunchTemplate:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
       LaunchTemplateData:
