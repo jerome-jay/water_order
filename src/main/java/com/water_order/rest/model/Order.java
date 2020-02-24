@@ -9,7 +9,7 @@ public class Order {
 
     }
 
-    public Order(Integer id, String farmId, String startTime, int duration, OrderStatus status) {
+    public Order(Integer id, String farmId, String startTime, Integer duration, OrderStatus status) {
         super();
         this.id = id;
         this.farmId = farmId;
@@ -27,7 +27,7 @@ public class Order {
     private String startTime;
 
     @Integer(message = "Duration in hours needs to be an integer")
-    private int duration;
+    private Integer duration;
 
     private OrderStatus status;
 
@@ -59,7 +59,7 @@ public class Order {
         return duration;
     }
 
-    public void setduration(int duration) {
+    public void setduration(Integer duration) {
         this.duration = duration;
     }
 
