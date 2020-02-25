@@ -23,6 +23,7 @@ public class Order {
     @NotEmpty(message = "farmId must not be empty")
     private String farmId;   
 
+    @ValidDateTime
     @NotEmpty(message = "startTime must not be empty")
     private String startTime;
 

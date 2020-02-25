@@ -30,3 +30,6 @@ Things not done or badly done, to save time:
 -- CFN parameters hardcoded - ansible is meant to retrieve them via lookup or parameters
 - Barebone infrastructure: not much thought given to logs, alerts ...etc
 - The "bootstrap" of the pipeline is not automated - it is left as is on purpose, as automating it can be dangerous (ie: force pushing an image as latest)
+
+CURL:
+curl -v -H 'content-type: application/json' -X POST --data '{"farmId":"abc","startTime":"timehere","duration":"30","status":"Requested"}' 'https://uat-1661608408.ap-southeast-2.elb.amazonaws.com/orders/' -k
