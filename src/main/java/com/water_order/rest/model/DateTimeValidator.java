@@ -9,17 +9,17 @@ public class DateTimeValidator implements ConstraintValidator<ValidDateTime, Str
 
   @Override
   public void initialize(ValidDateTime constraintAnnotation) {
-    this.pattern = constraintAnnotation.pattern();
   }
 
   @Override
   public boolean isValid(String object, ConstraintValidatorContext constraintContext) {
     if (object == null) {
-      return true;
+      return false;
     }
 
     try {
-      DateTimeFormatter.ofPattern(pattern).parse(object);
+      DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy/MM/dd HH:mm:ss");
+      DateTime dt = formatter.parseDateTime(object);
       return true;
     } catch (Exception ex) {
       return false;
