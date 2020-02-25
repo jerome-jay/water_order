@@ -5,8 +5,6 @@ import javax.validation.ConstraintValidatorContext;
 import java.time.format.DateTimeFormatter;
 
 public class DateTimeValidator implements ConstraintValidator<ValidDateTime, String> {
-  private final Logger log = LoggerFactory.getLogger(DateTimeValidator.class);
-
   private String pattern;
 
   @Override
