@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = DateTimeValidator.class)
 @Documented
 public @interface ValidDateTime {
-  String message() default "{message.key}";
+  String message() default "startTime needs to be a valid date";
 
   Class<?>[] groups() default {};
 

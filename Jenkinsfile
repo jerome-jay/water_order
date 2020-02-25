@@ -13,7 +13,7 @@ pipeline {
   //}
 
   parameters {
-      booleanParam(name: 'createInfra', defaultValue: true, description: 'Create infrastructure?')
+      booleanParam(name: 'createInfra', defaultValue: false, description: 'Create infrastructure?')
   }
 
   stages {

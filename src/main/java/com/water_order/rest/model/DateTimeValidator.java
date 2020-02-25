@@ -22,7 +22,6 @@ public class DateTimeValidator implements ConstraintValidator<ValidDateTime, Str
       DateTimeFormatter.ofPattern(pattern).parse(object);
       return true;
     } catch (Exception ex) {
-      log.error(object + " cannot be parsed by format " + pattern, ex);
       return false;
     }
   }
