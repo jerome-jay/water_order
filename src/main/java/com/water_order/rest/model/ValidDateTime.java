@@ -20,5 +20,5 @@ public @interface ValidDateTime {
 
   Class<? extends Payload>[] payload() default {};
 
-  String pattern() default "";
+  String pattern() default "yyyy-MM-dd";
 }
