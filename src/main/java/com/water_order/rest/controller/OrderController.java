@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+
 import com.water_order.rest.dao.OrderDAO;
 import com.water_order.rest.model.Order;
 import com.water_order.rest.model.Orders;
@@ -32,7 +34,7 @@ public class OrderController
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> addOrder(@Valid
+    public ResponseEntity<Object> addOrder(
                         @RequestBody Order order) 
                  throws Exception 
     {       
