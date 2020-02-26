@@ -34,9 +34,7 @@ public class OrderController
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> addOrder(
-                        @RequestBody Order order) 
-                 throws Exception 
+    public ResponseEntity<Object> addOrder(@Valid @RequestBody Order order) throws Exception 
     {       
         //Generate resource id
         Integer id = orderDao.getAllOrders().getOrderList().size() + 1;
