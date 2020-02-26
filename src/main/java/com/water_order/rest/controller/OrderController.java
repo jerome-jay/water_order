@@ -17,6 +17,7 @@ import com.water_order.rest.model.Order;
 import com.water_order.rest.model.Orders;
 
 @RestController
+@Validated
 @RequestMapping(path = "/orders")
 public class OrderController 
 {
