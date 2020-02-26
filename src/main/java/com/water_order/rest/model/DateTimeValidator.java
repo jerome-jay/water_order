@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateTimeValidator implements ConstraintValidator<ValidDateTime, String> {
-  private static final String DATE_PATTERN = "MM/dd/yyyy";
+  private static final String DATE_PATTERN = "yyyy/MM/dd";
   private SimpleDateFormat sdf;
 
   @Override
