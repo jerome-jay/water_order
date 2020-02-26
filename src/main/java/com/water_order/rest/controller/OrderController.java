@@ -32,7 +32,7 @@ public class OrderController
     }
     
     @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> addOrder(
+    public ResponseEntity<Object> addOrder(@Valid
                         @RequestBody Order order) 
                  throws Exception 
     {       
